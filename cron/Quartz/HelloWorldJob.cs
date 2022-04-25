@@ -7,9 +7,15 @@ namespace cron.Quartz
 {
     public class HelloWorldJob : IJob
     {
+        private readonly LogDate logDate;
+
+        public HelloWorldJob(LogDate logDate)
+        {
+            this.logDate = logDate;
+        }
         public Task Execute(IJobExecutionContext context)
         {
-            LogDate.testc();
+            logDate.testc();
             return Task.CompletedTask;
         }
     }

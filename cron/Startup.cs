@@ -8,6 +8,7 @@ using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
 using cron.Quartz;
+using cron.Services;
 
 namespace cron
 {
@@ -30,10 +31,12 @@ namespace cron
 
             services.AddSingleton(new JobSchedule(
                 jobType: typeof(HelloWorldJob),
-                cronExpression: "3,34 * * ? * * *"));
+                cronExpression: "0 10 * ? * * *"));
 
             services.AddHostedService<QuartzHostedService>();
 
+            services.AddTransient<LogDate>();
+            services.AddHttpClient();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
